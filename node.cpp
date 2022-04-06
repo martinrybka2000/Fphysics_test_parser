@@ -1,10 +1,6 @@
-/*
- * Copyright 2020 Casey Sanchez
- */
-
 #include "node.hpp"
 
-Node::Node(std::complex<double> const &value) : m_value(value)
+Node::Node(double const &value) : m_value(value)
 {
 }
 
@@ -37,38 +33,38 @@ std::string Node::Type() const
     return "Node";
 }
 
-std::complex<double> Node::Value() const
+double Node::Value() const
 {
     return m_value;
 }
 
-bool Node::Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr)
-{ 
-    if (lhs_ptr->Type() == rhs_ptr->Type()) {
-        std::vector<Scalar> lhs_args = lhs_ptr->Arguments();
-        std::vector<Scalar> rhs_args = rhs_ptr->Arguments();
+// bool Node::Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr)
+// {
+//     if (lhs_ptr->Type() == rhs_ptr->Type()) {
+//         std::vector<Scalar> lhs_args = lhs_ptr->Arguments();
+//         std::vector<Scalar> rhs_args = rhs_ptr->Arguments();
 
-        if (lhs_args.size() == 0) {
-            if (lhs_ptr->Type() == "VariableNode") {
-                return lhs_ptr == rhs_ptr;
-            }
-            else if (lhs_ptr->Type() == "ConstantNode") {
-                return Approximately(lhs_ptr->Value(), rhs_ptr->Value());
-            }
-        }
-        else {
-            for (auto lhs_arg : lhs_args) {
-                if (std::find_if(std::cbegin(rhs_args), std::cend(rhs_args), [&lhs_arg](Scalar const &rhs_arg) -> bool { return Node::Equivalent(lhs_arg, rhs_arg); }) == std::cend(rhs_args)) {
-                    return false;
-                }
-            }
+//         if (lhs_args.size() == 0) {
+//             if (lhs_ptr->Type() == "VariableNode") {
+//                 return lhs_ptr == rhs_ptr;
+//             }
+//             else if (lhs_ptr->Type() == "ConstantNode") {
+//                 return Approximately(lhs_ptr->Value(), rhs_ptr->Value());
+//             }
+//         }
+//         else {
+//             for (auto lhs_arg : lhs_args) {
+//                 if (std::find_if(std::cbegin(rhs_args), std::cend(rhs_args), [&lhs_arg](Scalar const &rhs_arg) -> bool { return Node::Equivalent(lhs_arg, rhs_arg); }) == std::cend(rhs_args)) {
+//                     return false;
+//                 }
+//             }
 
-            return true;
-        }
-    }
-    
-    return false;
-}
+//             return true;
+//         }
+//     }
+
+//     return false;
+// }
 
 std::ostream &operator<<(std::ostream &ostream, Node const &node)
 {
@@ -97,7 +93,7 @@ std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar)
     return ostream;
 }
 
-VariableNode::VariableNode(std::complex<double> const &value) : Node(value)
+VariableNode::VariableNode(double const &value) : Node(value)
 {
 }
 
@@ -106,14 +102,14 @@ std::string VariableNode::Type() const
     return "VariableNode";
 }
 
-Node &VariableNode::operator=(std::complex<double> const &value)
+Node &VariableNode::operator=(double const &value)
 {
     m_value = value;
 
     return *this;
 }
 
-ConstantNode::ConstantNode(std::complex<double> const &value) : Node(value)
+ConstantNode::ConstantNode(double const &value) : Node(value)
 {
 }
 

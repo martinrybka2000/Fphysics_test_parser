@@ -1,6 +1,3 @@
-/*
- * Copyright 2020 Casey Sanchez
- */
 
 #pragma once
 
@@ -14,20 +11,17 @@
 #include <algorithm>
 #include <numeric>
 
-#include "utils.hpp"
-
 class Node;
 
 using Scalar = std::shared_ptr<Node>;
-
 class Node
-{    
+{
 protected:
-    std::complex<double> m_value;
+    double m_value;
     std::vector<Scalar> m_arguments;
 
 public:
-    Node(std::complex<double> const &value = 0.0);
+    Node(double const &value = 0.0);
     Node(std::initializer_list<Scalar> const &arguments);
 
     Scalar &Argument(size_t const &index);
@@ -37,10 +31,10 @@ public:
 
     virtual std::string Type() const;
 
-    virtual std::complex<double> Value() const;
+    virtual double Value() const;
 
 public:
-    static bool Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr);
+    // static bool Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr);
 
     friend std::ostream &operator<<(std::ostream &ostream, Node const &node);
     friend std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar);
@@ -49,17 +43,17 @@ public:
 class VariableNode : public Node
 {
 public:
-    VariableNode(std::complex<double> const &value = 0.0);
+    VariableNode(double const &value = 0.0);
 
     std::string Type() const override;
 
-    Node &operator=(std::complex<double> const &value);
+    Node &operator=(double const &value);
 };
 
 class ConstantNode : public Node
 {
 public:
-    ConstantNode(std::complex<double> const &value);
+    ConstantNode(double const &value);
 
     std::string Type() const override;
 

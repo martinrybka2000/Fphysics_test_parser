@@ -1,6 +1,3 @@
-/*
- * Copyright 2020 Casey Sanchez
- */
 
 #pragma once
 
@@ -9,7 +6,6 @@
 #include <iostream>
 
 #include "node.hpp"
-#include "matrix.hpp"
 
 class AdditionNode : public Node
 {
@@ -18,7 +14,7 @@ public:
 
     std::string Type() const override;
 
-    std::complex<double> Value() const override;
+    double Value() const override;
 };
 
 class SubtractionNode : public Node
@@ -28,7 +24,7 @@ public:
 
     std::string Type() const override;
 
-    std::complex<double> Value() const override;
+    double Value() const override;
 };
 
 class MultiplicationNode : public Node
@@ -38,7 +34,7 @@ public:
 
     std::string Type() const override;
 
-    std::complex<double> Value() const override;
+    double Value() const override;
 };
 
 class DivisionNode : public Node
@@ -48,7 +44,7 @@ public:
 
     std::string Type() const override;
 
-    std::complex<double> Value() const override;
+    double Value() const override;
 };
 
 class ExponentiationNode : public Node
@@ -58,5 +54,5 @@ public:
 
     std::string Type() const override;
 
-    std::complex<double> Value() const override;
+    double Value() const override;
 };
