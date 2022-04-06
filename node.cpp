@@ -68,22 +68,23 @@ double Node::Value() const
 
 std::ostream &operator<<(std::ostream &ostream, Node const &node)
 {
-    std::complex<double> complex = node.Value();
+    // std::complex<double> complex = node.Value();
 
-    if (!Approximately(complex.real(), 0.0) && !Approximately(complex.imag(), 0.0)) {
-        ostream << complex.real() << (complex.imag() > 0.0 ? "+" : "") << complex.imag() << "i";
-    }
-    else if(!Approximately(complex.real(), 0.0)) {
-        ostream << complex.real();
-    }
-    else if(!Approximately(complex.imag(), 0.0)) {
-        ostream << complex.imag() << "i";
-    }
-    else {
-        ostream << 0.0;
-    }
+    // if (!Approximately(complex.real(), 0.0) && !Approximately(complex.imag(), 0.0)) {
+    //     ostream << complex.real() << (complex.imag() > 0.0 ? "+" : "") << complex.imag() << "i";
+    // }
+    // else if(!Approximately(complex.real(), 0.0)) {
+    //     ostream << complex.real();
+    // }
+    // else if(!Approximately(complex.imag(), 0.0)) {
+    //     ostream << complex.imag() << "i";
+    // }
+    // else {
+    //     ostream << 0.0;
+    // }
 
-    return ostream;
+    // return ostream;
+    ostream << node.Value();
 }
 
 std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar)
