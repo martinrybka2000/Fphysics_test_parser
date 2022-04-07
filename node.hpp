@@ -3,11 +3,9 @@
 
 #include <iostream>
 #include <string>
-#include <complex>
 #include <memory>
 #include <vector>
 #include <map>
-#include <variant>
 #include <algorithm>
 #include <numeric>
 
@@ -23,6 +21,7 @@ protected:
 public:
     Node(double const &value = 0.0);
     Node(std::initializer_list<Scalar> const &arguments);
+    virtual ~Node() {}
 
     Scalar &Argument(size_t const &index);
     Scalar Argument(size_t const &index) const;
@@ -44,6 +43,7 @@ class VariableNode : public Node
 {
 public:
     VariableNode(double const &value = 0.0);
+    virtual ~VariableNode() {}
 
     std::string Type() const override;
 
@@ -54,6 +54,7 @@ class ConstantNode : public Node
 {
 public:
     ConstantNode(double const &value);
+    virtual ~ConstantNode() {}
 
     std::string Type() const override;
 

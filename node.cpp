@@ -85,6 +85,7 @@ std::ostream &operator<<(std::ostream &ostream, Node const &node)
 
     // return ostream;
     ostream << node.Value();
+    return ostream;
 }
 
 std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar)
