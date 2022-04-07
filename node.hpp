@@ -12,6 +12,15 @@
 class Node;
 
 using Scalar = std::shared_ptr<Node>;
+
+/*****************************************
+ * Node ->
+ * * Main Node class for equation binary tree
+ * ! Not a pure virtual class
+ * @param m_value storing the numerical value of the Node
+ * @param m_argments pointers to the children nodes
+ * Todo LateX string returning method
+ ******************************************/
 class Node
 {
 protected:
@@ -23,6 +32,7 @@ public:
     Node(std::initializer_list<Scalar> const &arguments);
     virtual ~Node() {}
 
+    // getters and setters fot the m_arguments
     Scalar &Argument(size_t const &index);
     Scalar Argument(size_t const &index) const;
     std::vector<Scalar> &Arguments();
@@ -39,6 +49,12 @@ public:
     friend std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar);
 };
 
+/*****************************************
+ * VariableNode ->
+ * * Derived class for variables
+ * ToDo Add a string for storing variable name
+ * @param
+ ******************************************/
 class VariableNode : public Node
 {
 public:
@@ -50,6 +66,12 @@ public:
     Node &operator=(double const &value);
 };
 
+/*****************************************
+ * ConstantNode ->
+ * * Derived class for constant variables
+ * ? Dont know if gonna stay
+ * @param
+ ******************************************/
 class ConstantNode : public Node
 {
 public:
