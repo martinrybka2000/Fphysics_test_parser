@@ -55,11 +55,11 @@ public:
     double Value() const override;
 };
 
-class ExponentiationNode : public Node
+class PowerNode : public Node
 {
 public:
-    ExponentiationNode(std::initializer_list<Scalar> const &arguments);
-    virtual ~ExponentiationNode() {}
+    PowerNode(std::initializer_list<Scalar> const &arguments);
+    virtual ~PowerNode() {}
 
     std::string Type() const override;
     std::string Print() const override;

@@ -1,25 +1,25 @@
 
 #include "operations.hpp"
 
-ExponentiationNode::ExponentiationNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
+PowerNode::PowerNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 2)
     {
-        throw std::invalid_argument("ExponentiationNode accepts only 2 arguments");
+        throw std::invalid_argument("PowerNode accepts only 2 arguments");
     }
 }
 
-std::string ExponentiationNode::Type() const
+std::string PowerNode::Type() const
 {
-    return "ExponentiationNode";
+    return "PowerNode";
 }
 
-double ExponentiationNode::Value() const
+double PowerNode::Value() const
 {
     return std::pow(Argument(0)->Value(), Argument(1)->Value());
 }
 
-std::string ExponentiationNode::Print() const
+std::string PowerNode::Print() const
 {
     std::string a = Argument(0)->Print();
     std::string b = Argument(1)->Print();

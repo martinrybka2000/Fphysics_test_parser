@@ -15,7 +15,7 @@ int main(int, char**) {
     std::shared_ptr<AdditionNode> adddd(new AdditionNode({values[2], values[0]}));
     std::shared_ptr<SinNode> sinnnn(new SinNode({adddd}));
     std::shared_ptr<DivisionNode> divvvv(new DivisionNode({values[0], values[2]}));
-    std::shared_ptr<ExponentiationNode> powwww(new ExponentiationNode({sinnnn, divvvv}));
+    std::shared_ptr<PowerNode> powwww(new PowerNode({sinnnn, divvvv}));
 
     for (auto val : values)
     {
