@@ -19,6 +19,14 @@ double ExponentiationNode::Value() const
     return std::pow(Argument(0)->Value(), Argument(1)->Value());
 }
 
+std::string ExponentiationNode::Print() const
+{
+    std::string a = Argument(0)->Print();
+    std::string b = Argument(1)->Print();
+
+    return Node::Out(a) + '^' + Node::Out(b);
+}
+
 MultiplicationNode::MultiplicationNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 2)
@@ -35,6 +43,14 @@ std::string MultiplicationNode::Type() const
 double MultiplicationNode::Value() const
 {
     return Argument(0)->Value() * Argument(1)->Value();
+}
+
+std::string MultiplicationNode::Print() const
+{
+    std::string a = Argument(0)->Print();
+    std::string b = Argument(1)->Print();
+
+    return Node::Out(a) + '*' + Node::Out(b);
 }
 
 DivisionNode::DivisionNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
@@ -55,6 +71,14 @@ double DivisionNode::Value() const
     return Argument(0)->Value() / Argument(1)->Value();
 }
 
+std::string DivisionNode::Print() const
+{
+    std::string a = Argument(0)->Print();
+    std::string b = Argument(1)->Print();
+
+    return Node::Out(a) + '/' + Node::Out(b);
+}
+
 AdditionNode::AdditionNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 2)
@@ -73,6 +97,14 @@ double AdditionNode::Value() const
     return Argument(0)->Value() + Argument(1)->Value();
 }
 
+std::string AdditionNode::Print() const
+{
+    std::string a = Argument(0)->Print();
+    std::string b = Argument(1)->Print();
+
+    return Node::Out(a) + '+' + Node::Out(b);
+}
+
 SubtractionNode::SubtractionNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 2)
@@ -89,4 +121,12 @@ std::string SubtractionNode::Type() const
 double SubtractionNode::Value() const
 {
     return Argument(0)->Value() - Argument(1)->Value();
+}
+
+std::string SubtractionNode::Print() const
+{
+    std::string a = Argument(0)->Print();
+    std::string b = Argument(1)->Print();
+
+    return Node::Out(a) + '-' + Node::Out(b);
 }

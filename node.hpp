@@ -41,9 +41,11 @@ public:
     virtual std::string Type() const;
 
     virtual double Value() const;
+    virtual std::string Print() const;
 
 public:
     // static bool Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr);
+    static std::string Out(std::string &str);
 
     friend std::ostream &operator<<(std::ostream &ostream, Node const &node);
     friend std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar);
@@ -62,6 +64,7 @@ public:
     virtual ~VariableNode() {}
 
     std::string Type() const override;
+    virtual std::string Print() const override;
 
     Node &operator=(double const &value);
 };

@@ -58,6 +58,28 @@ double Node::Value() const
     return m_value;
 }
 
+/*****************************************
+ * Print ->
+ * * Returns a string for human syntax of the expression
+ ******************************************/
+std::string Node::Print() const
+{
+    return "";
+}
+
+std::string Node::Out(std::string &str)
+{
+    if (str.find('+') != std::string::npos ||
+        str.find('-') != std::string::npos ||
+        str.find('*') != std::string::npos ||
+        str.find('/') != std::string::npos)
+    {
+        str = '(' + str + ')';
+    }
+
+    return str;
+}
+
 // Dont know probably for checking if one tree == other tree
 /*
 bool Node::Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr)
@@ -91,22 +113,6 @@ bool Node::Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr)
 
 std::ostream &operator<<(std::ostream &ostream, Node const &node)
 {
-    /*   std::complex<double> complex = node.Value();
-
-       if (!Approximately(complex.real(), 0.0) && !Approximately(complex.imag(), 0.0)) {
-           ostream << complex.real() << (complex.imag() > 0.0 ? "+" : "") << complex.imag() << "i";
-       }
-       else if(!Approximately(complex.real(), 0.0)) {
-           ostream << complex.real();
-       }
-       else if(!Approximately(complex.imag(), 0.0)) {
-           ostream << complex.imag() << "i";
-       }
-       else {
-           ostream << 0.0;
-       }
-       return ostream;
-   */
     ostream << node.Value();
     return ostream;
 }
@@ -114,7 +120,6 @@ std::ostream &operator<<(std::ostream &ostream, Node const &node)
 std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar)
 {
     ostream << *scalar;
-
     return ostream;
 }
 
@@ -127,10 +132,14 @@ std::string VariableNode::Type() const
     return "VariableNode";
 }
 
+std::string VariableNode::Print() const
+{
+    return std::to_string(m_value);
+}
+
 Node &VariableNode::operator=(double const &value)
 {
     m_value = value;
-
     return *this;
 }
 

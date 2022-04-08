@@ -13,6 +13,7 @@ public:
     virtual ~CosNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -24,6 +25,7 @@ public:
     virtual ~SinNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -35,6 +37,7 @@ public:
     virtual ~TanNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -46,6 +49,7 @@ public:
     virtual ~AcosNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -57,6 +61,7 @@ public:
     virtual ~AsinNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -68,6 +73,7 @@ public:
     virtual ~AtanNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -79,6 +85,7 @@ public:
     virtual ~SqrtNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -90,6 +97,7 @@ public:
     virtual ~AbsNode(){}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -101,6 +109,7 @@ public:
     virtual ~ExpNode(){}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -112,6 +121,7 @@ public:
     virtual ~LnNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };

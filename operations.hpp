@@ -14,6 +14,7 @@ public:
     virtual ~AdditionNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -25,6 +26,7 @@ public:
     virtual ~SubtractionNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -36,6 +38,7 @@ public:
     virtual ~MultiplicationNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -47,6 +50,7 @@ public:
     virtual ~DivisionNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
@@ -58,6 +62,7 @@ public:
     virtual ~ExponentiationNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
 
     double Value() const override;
 };
