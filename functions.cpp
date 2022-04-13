@@ -251,7 +251,8 @@ std::string ExpNode::Print() const
 
 std::string ExpNode::PrintLaTex() const
 {
-    return "\\exp(" + Argument(0)->PrintLaTex() + ')';
+    return "e^{" + Argument(0)->PrintLaTex() + '}';
+    // return "\\exp(" + Argument(0)->PrintLaTex() + ')';
 }
 
 LnNode::LnNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)

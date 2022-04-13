@@ -128,7 +128,7 @@ std::ostream &operator<<(std::ostream &ostream, Scalar const &scalar)
     return ostream;
 }
 
-VariableNode::VariableNode(double const &value) : Node(value)
+VariableNode::VariableNode(std::string const &variable, double const &value) : Node(value), m_variable(variable)
 {
 }
 
@@ -139,12 +139,12 @@ std::string VariableNode::Type() const
 
 std::string VariableNode::Print() const
 {
-    return std::to_string(m_value);
+    return m_variable;
 }
 
 std::string VariableNode::PrintLaTex() const
 {
-    return std::to_string(m_value);
+    return m_variable;
 }
 
 Node &VariableNode::operator=(double const &value)

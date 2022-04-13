@@ -9,8 +9,8 @@ int main(int, char**) {
 
     std::vector<Scalar> values;
 
-    values.push_back(std::make_shared<VariableNode>(2.13 / 2.0));
-    values.push_back(std::make_shared<VariableNode>(1));
+    values.push_back(std::make_shared<VariableNode>("x", 2.13 / 2.0));
+    values.push_back(std::make_shared<VariableNode>("y", 1));
 
     std::shared_ptr<AdditionNode> adddd(new AdditionNode({values[1], values[0]}));
     std::shared_ptr<SinNode> sinnnn(new SinNode({adddd}));

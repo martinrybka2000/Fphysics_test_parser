@@ -66,7 +66,7 @@ std::string MultiplicationNode::PrintLaTex() const
     std::string a = Argument(0)->PrintLaTex();
     std::string b = Argument(1)->PrintLaTex();
 
-    return Node::Out(a) + "\\cdot" + Node::Out(b);
+    return Node::Out(a) + "\\cdot " + Node::Out(b);
 }
 
 DivisionNode::DivisionNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)

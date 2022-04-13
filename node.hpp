@@ -19,7 +19,6 @@ using Scalar = std::shared_ptr<Node>;
  * ! Not a pure virtual class
  * @param m_value storing the numerical value of the Node
  * @param m_argments pointers to the children nodes
- * Todo LateX string returning method
  ******************************************/
 class Node
 {
@@ -55,13 +54,15 @@ public:
 /*****************************************
  * VariableNode ->
  * * Derived class for variables
- * ToDo Add a string for storing variable name
- * @param
+ * ! Used for variables lke 'x' 'v' 'a' etc
+ * @param m_variable string for storing name of the variable
  ******************************************/
 class VariableNode : public Node
 {
+    const std::string m_variable;
+
 public:
-    VariableNode(double const &value = 0.0);
+    VariableNode(std::string const &variable, double const &value = 0.0);
     virtual ~VariableNode() {}
 
     std::string Type() const override;
