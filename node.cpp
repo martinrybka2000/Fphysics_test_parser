@@ -67,6 +67,11 @@ std::string Node::Print() const
     return "";
 }
 
+std::string Node::PrintLaTex() const
+{
+    return "";
+}
+
 std::string Node::Out(std::string &str)
 {
     if (str.find('+') != std::string::npos ||
@@ -133,6 +138,11 @@ std::string VariableNode::Type() const
 }
 
 std::string VariableNode::Print() const
+{
+    return std::to_string(m_value);
+}
+
+std::string VariableNode::PrintLaTex() const
 {
     return std::to_string(m_value);
 }
