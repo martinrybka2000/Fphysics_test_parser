@@ -60,10 +60,10 @@ public:
  ******************************************/
 class VariableNode : public Node
 {
-    const std::string m_variable;
+    // const std::string m_variable;
 
 public:
-    VariableNode(std::string const &variable, double const &value = 0.0);
+    VariableNode(double const &value = 0.0);
     virtual ~VariableNode() {}
 
     std::string Type() const override;
@@ -88,5 +88,5 @@ public:
     std::string Print() const override;
     std::string PrintLaTex() const override;
 
-    Node &operator=(double const &value);
+    Node &operator=(Node const &node) = delete;
 };
