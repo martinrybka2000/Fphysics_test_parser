@@ -73,18 +73,19 @@ public:
 };
 
 /*****************************************
- * ConstantNode ->
- * * Derived class for constant variables
- * ? Dont know if gonna stay
+ * NumberNode ->
+ * * Derived class for numercial variables
  * @param
  ******************************************/
-class ConstantNode : public Node
+class NumberNode : public Node
 {
 public:
-    ConstantNode(double const &value);
-    virtual ~ConstantNode() {}
+    NumberNode(double const &value);
+    virtual ~NumberNode() {}
 
     std::string Type() const override;
+    std::string Print() const override;
+    std::string PrintLaTex() const override;
 
-    Node &operator=(Node const &node) = delete;
+    Node &operator=(double const &value);
 };

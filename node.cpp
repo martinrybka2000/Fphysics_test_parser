@@ -97,7 +97,7 @@ bool Node::Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr)
             if (lhs_ptr->Type() == "VariableNode") {
                 return lhs_ptr == rhs_ptr;
             }
-            else if (lhs_ptr->Type() == "ConstantNode") {
+            else if (lhs_ptr->Type() == "NumberNode") {
                 return Approximately(lhs_ptr->Value(), rhs_ptr->Value());
             }
         }
@@ -153,11 +153,27 @@ Node &VariableNode::operator=(double const &value)
     return *this;
 }
 
-ConstantNode::ConstantNode(double const &value) : Node(value)
+NumberNode::NumberNode(double const &value) : Node(value)
 {
 }
 
-std::string ConstantNode::Type() const
+std::string NumberNode::Type() const
 {
-    return "ConstantNode";
+    return "NumberNode";
+}
+
+std::string NumberNode::Print() const
+{
+    return std::to_string(m_value);
+}
+
+std::string NumberNode::PrintLaTex() const
+{
+    return std::to_string(m_value);
+}
+
+Node &NumberNode::operator=(double const &value)
+{
+    m_value = value;
+    return *this;
 }
