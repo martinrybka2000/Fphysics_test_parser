@@ -3,14 +3,15 @@
 #include "node.hpp"
 #include "operations.hpp"
 #include "functions.hpp"
+#include "expression_visualizer.hpp"
 
-int main(int, char**) {
-    std::cout << "Hello, world!\n";
+int main(int, char **)
+{
 
     std::vector<Scalar> values;
 
     values.push_back(std::make_shared<VariableNode>("x", 2.13 / 2.0));
-    values.push_back(std::make_shared<NumberNode>(2.34));
+    values.push_back(std::make_shared<VariableNode>("y", 2.34));
 
     std::shared_ptr<NumberNode> number(new NumberNode(4));
     *number = 6;
@@ -24,6 +25,10 @@ int main(int, char**) {
     std::shared_ptr<Node> multtttt(new MultiplicationNode({tannnn, values[1]}));
     std::shared_ptr<Node> sqqqqqqrt(new SqrtNode({multtttt}));
     std::shared_ptr<Node> subbb(new SubtractionNode({powwww, sqqqqqqrt}));
+
+    std::cout << "Visualized expression tree: " << std::endl;
+    std::cout << ExpressionVisualizer(subbb) << std::endl
+              << std::endl;
 
     std::cout << "poww = " << subbb->Value() << "\n";
 
