@@ -19,17 +19,14 @@ void ExpressionComposer::Compose(std::ostream &ostream) const
     Compose(ostream, m_node);
 }
 
-void ExpressionComposer::Compose(std::ostream &ostream, Scalar const &node_variant, uint32_t const &precedence) const
+void ExpressionComposer::Compose(std::ostream &ostream, Scalar const &node, uint32_t const &precedence) const
 {
-
-    Scalar scalar = node_variant;
-
-    if (scalar->Type() == "VariableNode")
+    if (node->Type() == "VariableNode")
     {
         auto node_it = std::find_if(std::cbegin(m_node_map), std::cend(m_node_map),
-                                    [&scalar](std::pair<std::string, Scalar> const &node_pair)
+                                    [&node](std::pair<std::string, Scalar> const &node_pair)
                                     {
-                                        return node_pair.second == scalar;
+                                        return node_pair.second == node;
                                     });
 
         if (node_it != std::cend(m_node_map))
@@ -38,15 +35,15 @@ void ExpressionComposer::Compose(std::ostream &ostream, Scalar const &node_varia
         }
         else
         {
-            ostream << scalar;
+            ostream << node;
         }
     }
-    else if (scalar->Type() == "NumberNode")
+    else if (node->Type() == "NumberNode")
     {
         auto node_it = std::find_if(std::cbegin(m_node_map), std::cend(m_node_map),
-                                    [&scalar](std::pair<std::string, Scalar> const &node_pair)
+                                    [&node](std::pair<std::string, Scalar> const &node_pair)
                                     {
-                                        return node_pair.second == scalar;
+                                        return node_pair.second == node;
                                     });
 
         if (node_it != std::cend(m_node_map))
@@ -55,43 +52,43 @@ void ExpressionComposer::Compose(std::ostream &ostream, Scalar const &node_varia
         }
         else
         {
-            ostream << scalar;
+            ostream << node;
         }
     }
-    else if (scalar->Type() == "PowerNode")
+    else if (node->Type() == "PowerNode")
     {
-        Compose(ostream, Scalar(scalar->Argument(0)), 0);
+        Compose(ostream, Scalar(node->Argument(0)), 0);
 
         ostream << "^{";
 
-        Compose(ostream, Scalar(scalar->Argument(1)), 0);
+        Compose(ostream, Scalar(node->Argument(1)), 0);
 
         ostream << "}";
     }
-    else if (scalar->Type() == "MultiplicationNode")
+    else if (node->Type() == "MultiplicationNode")
     {
         if (precedence < 1)
         {
             ostream << "\\left(";
 
-            Compose(ostream, Scalar(scalar->Argument(0)), 1);
+            Compose(ostream, Scalar(node->Argument(0)), 1);
 
             ostream << "\\cdot ";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 1);
+            Compose(ostream, Scalar(node->Argument(1)), 1);
 
             ostream << "\\right)";
         }
         else
         {
-            Compose(ostream, Scalar(scalar->Argument(0)), 1);
+            Compose(ostream, Scalar(node->Argument(0)), 1);
 
             ostream << "\\cdot ";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 1);
+            Compose(ostream, Scalar(node->Argument(1)), 1);
         }
     }
-    else if (scalar->Type() == "DivisionNode")
+    else if (node->Type() == "DivisionNode")
     {
         if (precedence < 1)
         {
@@ -99,11 +96,11 @@ void ExpressionComposer::Compose(std::ostream &ostream, Scalar const &node_varia
 
             ostream << "\\frac{";
 
-            Compose(ostream, Scalar(scalar->Argument(0)), 1);
+            Compose(ostream, Scalar(node->Argument(0)), 1);
 
             ostream << "}{";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 1);
+            Compose(ostream, Scalar(node->Argument(1)), 1);
 
             ostream << "}";
 
@@ -113,160 +110,160 @@ void ExpressionComposer::Compose(std::ostream &ostream, Scalar const &node_varia
         {
             ostream << "\\frac{";
 
-            Compose(ostream, Scalar(scalar->Argument(0)), 1);
+            Compose(ostream, Scalar(node->Argument(0)), 1);
 
             ostream << "}{";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 1);
+            Compose(ostream, Scalar(node->Argument(1)), 1);
 
             ostream << "}";
         }
     }
-    else if (scalar->Type() == "AdditionNode")
+    else if (node->Type() == "AdditionNode")
     {
         if (precedence < 2)
         {
             ostream << "\\left(";
 
-            Compose(ostream, Scalar(scalar->Argument(0)), 2);
+            Compose(ostream, Scalar(node->Argument(0)), 2);
 
             ostream << "+";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 2);
+            Compose(ostream, Scalar(node->Argument(1)), 2);
 
             ostream << "\\right)";
         }
         else
         {
-            Compose(ostream, Scalar(scalar->Argument(0)), 2);
+            Compose(ostream, Scalar(node->Argument(0)), 2);
 
             ostream << "+";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 2);
+            Compose(ostream, Scalar(node->Argument(1)), 2);
         }
     }
-    else if (scalar->Type() == "SubtractionNode")
+    else if (node->Type() == "SubtractionNode")
     {
         if (precedence < 2)
         {
             ostream << "\\left(";
 
-            Compose(ostream, Scalar(scalar->Argument(0)), 2);
+            Compose(ostream, Scalar(node->Argument(0)), 2);
 
             ostream << "-";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 2);
+            Compose(ostream, Scalar(node->Argument(1)), 2);
 
             ostream << "\\right)";
         }
         else
         {
-            Compose(ostream, Scalar(scalar->Argument(0)), 2);
+            Compose(ostream, Scalar(node->Argument(0)), 2);
 
             ostream << "-";
 
-            Compose(ostream, Scalar(scalar->Argument(1)), 2);
+            Compose(ostream, Scalar(node->Argument(1)), 2);
         }
     }
-    else if (scalar->Type() == "SinNode")
+    else if (node->Type() == "SinNode")
     {
         ostream << "sin\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "CosNode")
+    else if (node->Type() == "CosNode")
     {
         ostream << "cos\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "TanNode")
+    else if (node->Type() == "TanNode")
     {
         ostream << "tan\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "AsinNode")
+    else if (node->Type() == "AsinNode")
     {
         ostream << "asin\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "AcosNode")
+    else if (node->Type() == "AcosNode")
     {
         ostream << "acos\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "AtanNode")
+    else if (node->Type() == "AtanNode")
     {
         ostream << "atan\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "SqrtNode")
+    else if (node->Type() == "SqrtNode")
     {
         ostream << "sqrt\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "AbsNode")
+    else if (node->Type() == "AbsNode")
     {
         ostream << "abs\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "ExpNode")
+    else if (node->Type() == "ExpNode")
     {
         ostream << "exp\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "LnNode")
+    else if (node->Type() == "LnNode")
     {
         ostream << "ln\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "DeterminantNode")
+    else if (node->Type() == "DeterminantNode")
     {
         ostream << "det\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
-    else if (scalar->Type() == "InverseNode")
+    else if (node->Type() == "InverseNode")
     {
         ostream << "inv\\left(";
 
-        Compose(ostream, Scalar(scalar->Argument(0)), ~0);
+        Compose(ostream, Scalar(node->Argument(0)), ~0);
 
         ostream << "\\right)";
     }
     else
     {
-        throw std::invalid_argument("Node of unknown type: " + scalar->Type());
+        throw std::invalid_argument("Node of unknown type: " + node->Type());
     }
 }
 
