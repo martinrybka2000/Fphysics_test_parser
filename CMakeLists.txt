@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include(CTest)
 enable_testing()
 
-add_executable(Fphyscs_test_my_parser main.cpp node.cpp operations.cpp functions.cpp expression_visualizer.cpp expression_parser.cpp)
+add_executable(Fphyscs_test_my_parser main.cpp node.cpp operations.cpp functions.cpp expression_visualizer.cpp expression_parser.cpp expression_composer.cpp)
 
 link_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR})

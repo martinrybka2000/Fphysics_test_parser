@@ -5,6 +5,9 @@
 #include "functions.hpp"
 #include "expression_visualizer.hpp"
 #include "expression_parser.hpp"
+#include "expression_composer.hpp"
+
+// !ToDo add comments, add expresion_composer insted of printLatex()
 
 int main(int, char **)
 {
@@ -40,7 +43,9 @@ int main(int, char **)
 
     std::map<std::string, std::shared_ptr<Node>> node_map = {{"x", x}, {"y", y}};
 
-    ExpressionParser expression_parser("\\frac{y}{x}*x^{x+2.4}*x^{x+2}*x^{x+2}*sin(5 + y*x)", node_map);
+    // ExpressionParser expression_parser("\\frac{y}{x}*x^{x+2.4}*x^{x+2}*x^{x+2}*sin(5 + y*x)*cos(2*y^2)", node_map);
+    // ExpressionParser expression_parser("\\frac{\\sin\\left(5*x+4\\right)}{\\frac{x}{y^{4}}}*\\cos\\left(2*x+y^{2*x}\\right)", node_map);
+    ExpressionParser expression_parser("\\frac{x}{y^{x+2.5}} * sin\\left(cos\\left(exp\\left(x+2* y\\right)\\right)\\right)+1", node_map);
 
     std::shared_ptr<Node> node_ptr = expression_parser.Parse();
 
@@ -49,4 +54,7 @@ int main(int, char **)
               << std::endl;
 
     std::cout << "Latex output = " << node_ptr->PrintLaTex() << std::endl;
+
+    ExpressionComposer espresion_composer(node_ptr, node_map);
+    std::cout << "Latex output composed = " << espresion_composer << std::endl;
 }
