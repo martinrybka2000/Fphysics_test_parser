@@ -6,6 +6,7 @@
 #include "expression_visualizer.hpp"
 #include "expression_parser.hpp"
 #include "expression_composer.hpp"
+#include "utils.hpp"
 
 // !ToDo add comments, add expresion_composer insted of printLatex()
 
