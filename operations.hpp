@@ -15,7 +15,6 @@ public:
 
     std::string Type() const override;
     std::string Print() const override;
-    std::string PrintLaTex() const override;
 
     double Value() const override;
 };
@@ -28,7 +27,6 @@ public:
 
     std::string Type() const override;
     std::string Print() const override;
-    std::string PrintLaTex() const override;
 
     double Value() const override;
 };
@@ -41,7 +39,6 @@ public:
 
     std::string Type() const override;
     std::string Print() const override;
-    std::string PrintLaTex() const override;
 
     double Value() const override;
 };
@@ -54,7 +51,6 @@ public:
 
     std::string Type() const override;
     std::string Print() const override;
-    std::string PrintLaTex() const override;
 
     double Value() const override;
 };
@@ -67,7 +63,6 @@ public:
 
     std::string Type() const override;
     std::string Print() const override;
-    std::string PrintLaTex() const override;
 
     double Value() const override;
 };

@@ -24,11 +24,6 @@ std::string CosNode::Print() const
     return "cos(" + Argument(0)->Print() + ')';
 }
 
-std::string CosNode::PrintLaTex() const
-{
-    return "\\cos(" + Argument(0)->PrintLaTex() + ')';
-}
-
 SinNode::SinNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 1)
@@ -50,11 +45,6 @@ double SinNode::Value() const
 std::string SinNode::Print() const
 {
     return "sin(" + Argument(0)->Print() + ')';
-}
-
-std::string SinNode::PrintLaTex() const
-{
-    return "\\sin(" + Argument(0)->PrintLaTex() + ')';
 }
 
 TanNode::TanNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
@@ -80,11 +70,6 @@ std::string TanNode::Print() const
     return "tan(" + Argument(0)->Print() + ')';
 }
 
-std::string TanNode::PrintLaTex() const
-{
-    return "\\tan(" + Argument(0)->PrintLaTex() + ')';
-}
-
 AcosNode::AcosNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 1)
@@ -106,11 +91,6 @@ double AcosNode::Value() const
 std::string AcosNode::Print() const
 {
     return "acos(" + Argument(0)->Print() + ')';
-}
-
-std::string AcosNode::PrintLaTex() const
-{
-    return "\\arccos(" + Argument(0)->PrintLaTex() + ')';
 }
 
 AsinNode::AsinNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
@@ -136,11 +116,6 @@ std::string AsinNode::Print() const
     return "asin(" + Argument(0)->Print() + ')';
 }
 
-std::string AsinNode::PrintLaTex() const
-{
-    return "\\arcsin(" + Argument(0)->PrintLaTex() + ')';
-}
-
 AtanNode::AtanNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 1)
@@ -162,11 +137,6 @@ double AtanNode::Value() const
 std::string AtanNode::Print() const
 {
     return "atan(" + Argument(0)->Print() + ')';
-}
-
-std::string AtanNode::PrintLaTex() const
-{
-    return "\\arctan(" + Argument(0)->PrintLaTex() + ')';
 }
 
 SqrtNode::SqrtNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
@@ -192,11 +162,6 @@ std::string SqrtNode::Print() const
     return "sqrt(" + Argument(0)->Print() + ')';
 }
 
-std::string SqrtNode::PrintLaTex() const
-{
-    return "\\sqrt{" + Argument(0)->PrintLaTex() + '}';
-}
-
 AbsNode::AbsNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 1)
@@ -218,11 +183,6 @@ double AbsNode::Value() const
 std::string AbsNode::Print() const
 {
     return '|' + Argument(0)->Print() + '|';
-}
-
-std::string AbsNode::PrintLaTex() const
-{
-    return "\\left|" + Argument(0)->PrintLaTex() + "\\right|";
 }
 
 ExpNode::ExpNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
@@ -249,12 +209,6 @@ std::string ExpNode::Print() const
     return "e^" + Node::Out(a);
 }
 
-std::string ExpNode::PrintLaTex() const
-{
-    return "e^{" + Argument(0)->PrintLaTex() + '}';
-    // return "\\exp(" + Argument(0)->PrintLaTex() + ')';
-}
-
 LnNode::LnNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 1)
@@ -276,9 +230,4 @@ double LnNode::Value() const
 std::string LnNode::Print() const
 {
     return "ln(" + Argument(0)->Print() + ')';
-}
-
-std::string LnNode::PrintLaTex() const
-{
-    return "\\ln(" + Argument(0)->PrintLaTex() + ')';
 }

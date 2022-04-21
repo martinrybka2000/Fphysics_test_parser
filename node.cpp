@@ -67,11 +67,6 @@ std::string Node::Print() const
     return "";
 }
 
-std::string Node::PrintLaTex() const
-{
-    return "";
-}
-
 std::string Node::Out(std::string &str)
 {
     if (str.find('+') != std::string::npos ||
@@ -142,11 +137,6 @@ std::string VariableNode::Print() const
     return std::to_string(m_value);
 }
 
-std::string VariableNode::PrintLaTex() const
-{
-    return std::to_string(m_value);
-}
-
 Node &VariableNode::operator=(double const &value)
 {
     m_value = value;
@@ -163,11 +153,6 @@ std::string NumberNode::Type() const
 }
 
 std::string NumberNode::Print() const
-{
-    return std::to_string(m_value);
-}
-
-std::string NumberNode::PrintLaTex() const
 {
     return std::to_string(m_value);
 }

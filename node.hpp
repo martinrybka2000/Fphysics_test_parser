@@ -42,7 +42,6 @@ public:
 
     virtual double Value() const;
     virtual std::string Print() const;
-    virtual std::string PrintLaTex() const;
 
 public:
     // static bool Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr);
@@ -68,7 +67,6 @@ public:
 
     std::string Type() const override;
     std::string Print() const override;
-    std::string PrintLaTex() const override;
 
     Node &operator=(double const &value);
 };
@@ -86,7 +84,6 @@ public:
 
     std::string Type() const override;
     std::string Print() const override;
-    std::string PrintLaTex() const override;
 
     Node &operator=(Node const &node) = delete;
 };

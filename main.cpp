@@ -37,7 +37,6 @@ int main(int, char **)
     std::cout << "poww = " << subbb->Value() << "\n";
 
     std::cout << "expression = " << subbb->Print() << "\n";
-    std::cout << "LaTex = " << subbb->PrintLaTex() << "\n\n";
 
     std::shared_ptr<VariableNode> x(new VariableNode(3.0));
     std::shared_ptr<VariableNode> y(new VariableNode(2.0));
@@ -53,8 +52,6 @@ int main(int, char **)
     std::cout << "Visualized expression tree: " << std::endl;
     std::cout << ExpressionVisualizer(node_ptr, node_map) << std::endl
               << std::endl;
-
-    std::cout << "Latex output = " << node_ptr->PrintLaTex() << std::endl;
 
     ExpressionComposer espresion_composer(node_ptr, node_map);
     std::cout << "Latex output composed = " << espresion_composer << std::endl;

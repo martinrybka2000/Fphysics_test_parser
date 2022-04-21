@@ -27,14 +27,6 @@ std::string PowerNode::Print() const
     return Node::Out(a) + '^' + Node::Out(b);
 }
 
-std::string PowerNode::PrintLaTex() const
-{
-    std::string a = Argument(0)->PrintLaTex();
-    std::string b = Argument(1)->PrintLaTex();
-
-    return '(' + a + ")^{" + b + '}';
-}
-
 MultiplicationNode::MultiplicationNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 2)
@@ -59,14 +51,6 @@ std::string MultiplicationNode::Print() const
     std::string b = Argument(1)->Print();
 
     return Node::Out(a) + '*' + Node::Out(b);
-}
-
-std::string MultiplicationNode::PrintLaTex() const
-{
-    std::string a = Argument(0)->PrintLaTex();
-    std::string b = Argument(1)->PrintLaTex();
-
-    return Node::Out(a) + "\\cdot " + Node::Out(b);
 }
 
 DivisionNode::DivisionNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
@@ -95,14 +79,6 @@ std::string DivisionNode::Print() const
     return Node::Out(a) + '/' + Node::Out(b);
 }
 
-std::string DivisionNode::PrintLaTex() const
-{
-    std::string a = Argument(0)->PrintLaTex();
-    std::string b = Argument(1)->PrintLaTex();
-
-    return "\\frac{" + a + "}{" + b + '}';
-}
-
 AdditionNode::AdditionNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 2)
@@ -129,14 +105,6 @@ std::string AdditionNode::Print() const
     return Node::Out(a) + '+' + Node::Out(b);
 }
 
-std::string AdditionNode::PrintLaTex() const
-{
-    std::string a = Argument(0)->PrintLaTex();
-    std::string b = Argument(1)->PrintLaTex();
-
-    return Node::Out(a) + '+' + Node::Out(b);
-}
-
 SubtractionNode::SubtractionNode(std::initializer_list<Scalar> const &arguments) : Node(arguments)
 {
     if (arguments.size() != 2)
@@ -159,14 +127,6 @@ std::string SubtractionNode::Print() const
 {
     std::string a = Argument(0)->Print();
     std::string b = Argument(1)->Print();
-
-    return Node::Out(a) + '-' + Node::Out(b);
-}
-
-std::string SubtractionNode::PrintLaTex() const
-{
-    std::string a = Argument(0)->PrintLaTex();
-    std::string b = Argument(1)->PrintLaTex();
 
     return Node::Out(a) + '-' + Node::Out(b);
 }
