@@ -7,37 +7,12 @@
 #include "expression_parser.hpp"
 #include "expression_composer.hpp"
 #include "utils.hpp"
+#include "expression_simplifier.hpp"
 
 // !ToDo add comments, add expresion_composer insted of printLatex()
 
 int main(int, char **)
 {
-
-    std::vector<Scalar> values;
-
-    values.push_back(std::make_shared<VariableNode>(2.13 / 2.0));
-    values.push_back(std::make_shared<VariableNode>(2.34));
-
-    std::shared_ptr<NumberNode> number(new NumberNode(4));
-
-    std::shared_ptr<Node> adddd(new AdditionNode({values[1], number}));
-    std::shared_ptr<Node> sinnnn(new SinNode({adddd}));
-    std::shared_ptr<Node> divvvv(new DivisionNode({values[0], values[1]}));
-    std::shared_ptr<Node> powwww(new PowerNode({sinnnn, divvvv}));
-
-    std::shared_ptr<Node> tannnn(new TanNode({values[0]}));
-    std::shared_ptr<Node> multtttt(new MultiplicationNode({tannnn, values[1]}));
-    std::shared_ptr<Node> sqqqqqqrt(new SqrtNode({multtttt}));
-    std::shared_ptr<Node> subbb(new SubtractionNode({powwww, sqqqqqqrt}));
-
-    std::cout << "Visualized expression tree: " << std::endl;
-    std::cout << ExpressionVisualizer(subbb) << std::endl
-              << std::endl;
-
-    std::cout << "poww = " << subbb->Value() << "\n";
-
-    std::cout << "expression = " << subbb->Print() << "\n";
-
     std::shared_ptr<VariableNode> x(new VariableNode(3.0));
     std::shared_ptr<VariableNode> y(new VariableNode(2.0));
 
@@ -45,7 +20,7 @@ int main(int, char **)
 
     // ExpressionParser expression_parser("\\frac{y}{x}*x^{x+2.4}*x^{x+2}*x^{x+2}*sin(5 + y*x)*cos(2*y^2)", node_map);
     // ExpressionParser expression_parser("\\frac{\\sin\\left(5*x+4\\right)}{\\frac{x}{y^{4}}}*\\cos\\left(2*x+y^{2*x}\\right)", node_map);
-    ExpressionParser expression_parser("\\frac{x}{y^{x+2.5}} * sin\\left(cos\\left(exp\\left(x+2* y\\right)\\right)\\right)+1", node_map);
+    ExpressionParser expression_parser("\\frac{x}{y^{x+2.5/1}} * sin\\left(cos\\left(exp\\left(x^3+2* y + 4 + y + x^3 + 2.6\\right)\\right)\\right)+1 + 5*7", node_map);
 
     std::shared_ptr<Node> node_ptr = expression_parser.Parse();
 
@@ -55,4 +30,15 @@ int main(int, char **)
 
     ExpressionComposer espresion_composer(node_ptr, node_map);
     std::cout << "Latex output composed = " << espresion_composer << std::endl;
+
+    ExpressionSimplifier expresion_simplifier(node_ptr, node_map);
+    expresion_simplifier.Simplify();
+
+    std::cout << "After simplify ______________________________________" << std::endl
+              << "Visualized expression tree: " << std::endl;
+    std::cout << ExpressionVisualizer(node_ptr, node_map) << std::endl
+              << std::endl;
+
+    ExpressionComposer espresion_composer2(node_ptr, node_map);
+    std::cout << "Latex output composed = " << espresion_composer2 << std::endl;
 }

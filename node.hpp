@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <numeric>
 
+#include "utils.hpp"
+
 class Node;
 
 using Scalar = std::shared_ptr<Node>;
@@ -44,7 +46,7 @@ public:
     virtual std::string Print() const;
 
 public:
-    // static bool Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr);
+    static bool Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr);
     static std::string Out(std::string &str);
 
     friend std::ostream &operator<<(std::ostream &ostream, Node const &node);

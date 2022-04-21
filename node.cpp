@@ -61,6 +61,7 @@ double Node::Value() const
 /*****************************************
  * Print ->
  * * Returns a string for human syntax of the expression
+ * @param
  ******************************************/
 std::string Node::Print() const
 {
@@ -80,8 +81,12 @@ std::string Node::Out(std::string &str)
     return str;
 }
 
-// Dont know probably for checking if one tree == other tree
-/*
+/*****************************************
+ * Equivalet ->
+ * * Checks if two trees are the same in value
+ * @param lhs_ptr left node to comapre
+ * @param rgh_ptr right node to compare
+ ******************************************/
 bool Node::Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr)
 {
     if (lhs_ptr->Type() == rhs_ptr->Type()) {
@@ -109,7 +114,6 @@ bool Node::Equivalent(Scalar const &lhs_ptr, Scalar const &rhs_ptr)
 
     return false;
 }
-*/
 
 std::ostream &operator<<(std::ostream &ostream, Node const &node)
 {
