@@ -9,6 +9,7 @@
 #include "utils.hpp"
 #include "expression_simplifier.hpp"
 #include "equation_parser.hpp"
+#include "equation_composer.hpp"
 
 // !ToDo add comments, add expresion_composer insted of printLatex()
 
@@ -50,5 +51,5 @@ int main(int, char **)
 
     std::cout << "Is equation equal: " << equation_parser.Equal() << std::endl
               << "equation :" << std::endl
-              << ExpressionComposer(eq.m_lhs, node_map) << " = " << ExpressionComposer(eq.m_rhs, node_map) << std::endl;
+              << EquationComposer(eq, node_map) << std::endl;
 }

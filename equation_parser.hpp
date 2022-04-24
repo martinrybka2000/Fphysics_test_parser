@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "expression_parser.hpp"
 
 struct Equation
