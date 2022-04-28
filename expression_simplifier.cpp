@@ -28,7 +28,7 @@ Scalar ExpressionSimplifier::Identify(Scalar const &node)
         argument = Identify(argument);
     }
 
-    if (node->Type() == "ExponentiationNode")
+    if (node->Type() == "PowerNode")
     {
         if (node->Argument(1)->Type() == "NumberNode")
         {
@@ -96,7 +96,7 @@ Scalar ExpressionSimplifier::Identify(Scalar const &node)
             }
         }
 
-        if (node->Argument(1)->Type() == "ExponentiationNode")
+        if (node->Argument(1)->Type() == "PowerNode")
         {
             if (node->Argument(1)->Argument(1)->Type() == "NumberNode")
             {
@@ -343,8 +343,8 @@ Scalar ExpressionSimplifier::CombineFactors(Scalar const &node)
                     Scalar rhs_variable;
 
                     // Extract the variable of interest;
-                    // if the node is of type "ExponentiationNode" we want Argument(0)
-                    if ((*lhs_variable_it)->Type() == "ExponentiationNode")
+                    // if the node is of type "PowerNode" we want Argument(0)
+                    if ((*lhs_variable_it)->Type() == "PowerNode")
                     {
                         lhs_variable = (*lhs_variable_it)->Argument(0);
                     }
@@ -353,7 +353,7 @@ Scalar ExpressionSimplifier::CombineFactors(Scalar const &node)
                         lhs_variable = (*lhs_variable_it);
                     }
 
-                    if ((*rhs_variable_it)->Type() == "ExponentiationNode")
+                    if ((*rhs_variable_it)->Type() == "PowerNode")
                     {
                         rhs_variable = (*rhs_variable_it)->Argument(0);
                     }
@@ -368,9 +368,9 @@ Scalar ExpressionSimplifier::CombineFactors(Scalar const &node)
                         Scalar lhs_degree;
                         Scalar rhs_degree;
 
-                        // If the variable is of type "ExponentiationNode" then our degree is Argument(1)
+                        // If the variable is of type "PowerNode" then our degree is Argument(1)
                         // otherwise we have an implied degree of 1
-                        if ((*lhs_variable_it)->Type() == "ExponentiationNode")
+                        if ((*lhs_variable_it)->Type() == "PowerNode")
                         {
                             lhs_degree = (*lhs_variable_it)->Argument(1);
                         }
@@ -379,7 +379,7 @@ Scalar ExpressionSimplifier::CombineFactors(Scalar const &node)
                             lhs_degree = Scalar(new NumberNode(1.0));
                         }
 
-                        if ((*rhs_variable_it)->Type() == "ExponentiationNode")
+                        if ((*rhs_variable_it)->Type() == "PowerNode")
                         {
                             rhs_degree = (*rhs_variable_it)->Argument(1);
                         }

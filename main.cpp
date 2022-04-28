@@ -10,6 +10,7 @@
 #include "expression_simplifier.hpp"
 #include "equation_parser.hpp"
 #include "equation_composer.hpp"
+#include "calculus.hpp"
 
 // !ToDo add comments, add expresion_composer insted of printLatex()
 
@@ -22,7 +23,7 @@ int main(int, char **)
     std::map<std::string, std::shared_ptr<Node>> node_map = {{"x", x}, {"y", y}};
     node_map.emplace("z", z);
 
-    ExpressionParser expression_parser("\\frac{y}{x}*x^{x+2}*x^{x+2}*x^{x+2}*sin(5 + y*x)*cos(2*y^2) + z", node_map);
+    ExpressionParser expression_parser("\\frac{y}{x}+(x^{x+2}+x^{x+2}+x^{x+2})*sin(5 + y*x)*cos(2*y^2) + z", node_map);
     // ExpressionParser expression_parser("\\frac{\\sin\\left(5*x+4\\right)}{\\frac{x}{y^{4}}}*\\cos\\left(2*x+y^{2*x}\\right)", node_map);
     // ExpressionParser expression_parser("\\frac{x}{y^{x+2.5/1}} * sin\\left(cos\\left(exp\\left(x^3+2* y + 4 + y + x^3 + 2.6\\right)\\right)\\right)+1 + 5*7", node_map);
 
@@ -46,10 +47,19 @@ int main(int, char **)
     ExpressionComposer espresion_composer2(node_ptr, node_map);
     std::cout << "Latex output composed = " << espresion_composer2 << std::endl;
 
-    EquationParser equation_parser("2*x = x+x+y", node_map);
+    EquationParser equation_parser(" 1/cos(x) + 2*exp(2*x) = x+x+y", node_map);
     Equation eq = equation_parser.GetEquation();
 
     std::cout << "Is equation equal: " << equation_parser.Equal() << std::endl
               << "equation :" << std::endl
               << EquationComposer(eq, node_map) << std::endl;
+
+    Calculus calculus(node_ptr, node_map);
+    // calculus.Partial(x);
+    Scalar dx = calculus.Partial(y);
+    ExpressionSimplifier simplyfy3(dx, node_map);
+    simplyfy3.Simplify();
+    ExpressionComposer composer3(dx, node_map);
+
+    std::cout << "dx = " << composer3 << std::endl;
 }

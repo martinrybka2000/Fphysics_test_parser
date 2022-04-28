@@ -18,7 +18,8 @@ add_executable(Fphyscs_test_my_parser
     utils.cpp
     expression_simplifier.cpp
     equation_parser.cpp
-    equation_composer.cpp)
+    equation_composer.cpp
+    calculus.cpp)
 
 link_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR})
